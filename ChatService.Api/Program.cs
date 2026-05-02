@@ -4,10 +4,19 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy => policy
+            .WithOrigins("http://localhost:3000", "https://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
 builder.Services.AddDbContext<ChatDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -36,5 +45,6 @@ app.UseCors("AllowFrontend");
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapOpenApi();
 
 app.Run();
