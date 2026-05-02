@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="ChatService.Api/ChatService.Api.csproj" />
+  <Project Path="ChatServiceTests/ChatServiceTests.csproj" Id="a2becfca-3364-48da-bf2a-102c381c8b6b" />
 </Solution>
