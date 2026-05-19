@@ -9,7 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ChatDbContext>(options =>
-    options.UseInMemoryDatabase("ChatDb"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<ChatMessageService>();
 
@@ -46,3 +46,6 @@ app.MapControllers();
 
 app.Run();
 
+
+
+//https://shikochatbox.azurewebsites.net/swagger/index.html
